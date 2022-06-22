@@ -50,6 +50,12 @@ function calculateResults() {
 
 // Show Error
 function showError(error) {
+  //* Hide results
+  document.getElementById('results').style.display = 'none';
+
+  //* Hide loader
+  document.getElementById('loading').style.display = 'none';
+
   // Create a div
   const errorDiv = document.createElement('div');
 
@@ -68,7 +74,7 @@ function showError(error) {
   card.insertBefore(errorDiv, heading);
 
   // Clear error after x seconds
-  setTimeout(clearError, 2000);
+  setTimeout(clearError, 3000);
 }
 
 function clearError() {
