@@ -38,6 +38,10 @@ function showError(error) {
   // Create a div
   const errorDiv = document.createElement('div');
 
+  // Get elements
+  const card = document.querySelector('.card');
+  const heading = document.querySelector('.heading');
+
   //* Bootstrap specific for creating alerts
   // Add class
   errorDiv.className = 'alert alert-danger';
@@ -45,4 +49,13 @@ function showError(error) {
   // Create text node and append to div
   errorDiv.appendChild(document.createTextNode(error));
 
+  // Insert error above heading -> Above 'Loan Calculator'
+  card.insertBefore(errorDiv, heading);
+
+  // Clear error after x seconds
+  setTimeout(clearError, 2000);
+}
+
+function clearError() {
+  document.querySelector('.alert').remove();
 }
