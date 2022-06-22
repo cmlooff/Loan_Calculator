@@ -16,6 +16,19 @@ function calculateResults(e) {
   const principle = parseFloat(amount.value)
   //* Interest value as a float.
   const calculatedInterest = parseFloat(interest.value) / 100 / 12;
+  const calculatedPayments = parseFloat(years.value) * 12;
+
+  // Compute monthly payments
+  const x = Math.pow(1 + calculatedInterest, calculatedPayments);
+  const monthly = (principle * x * calculatedInterest) / (x - 1) // Monthly payment
+
+  if (isFinite(monthly)) {
+    monthlyPayment.value = monthly.toFixed(2); // Fixed decimal
+    totalPayment.value = (monthly * calculatedPayments).toFixed(2);
+    totalInterest.value = ((monthly * calculatedPayments) - principle).toFixed(2);
+  } else {
+    console.log('Please check your numbers');
+  }
 
   e.preventDefault();
 }
